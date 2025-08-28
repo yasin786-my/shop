@@ -6,56 +6,95 @@
     <title>RESTHETIX SWAG | Premium Clothing</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome@6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --royal-blue: #1A3C88;
             --gold: #FFD700;
+            --light-gold: #FFED85;
             --light-gray: #F8F8F8;
             --dark-gray: #222222;
+            --medium-gray: #666666;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--light-gray);
             color: var(--dark-gray);
-            padding-top: 80px;
+            line-height: 1.6;
+            padding-top: 90px;
         }
         
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
         }
         
         /* Navigation */
         .navbar {
             background-color: var(--royal-blue);
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 12px 0;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
         }
         
         .navbar-brand {
             display: flex;
             align-items: center;
             font-weight: 700;
-            font-size: 1.8rem;
+            font-size: 1.9rem;
         }
         
         .logo-img {
-            height: 50px;
-            width: 50px;
+            height: 70px;
+            width: 70px;
             border-radius: 50%;
-            border: 2px solid var(--gold);
-            margin-right: 10px;
-            object-fit: contain;
+            border: 3px solid var(--gold);
+            margin-right: 15px;
+            object-fit: cover;
             background-color: white;
-            padding: 3px;
+            padding: 4px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .logo-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
         
         .nav-link {
             color: white !important;
             font-weight: 500;
-            margin: 0 10px;
+            margin: 0 12px;
             transition: all 0.3s;
+            position: relative;
+            font-size: 1.05rem;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
         }
         
         .nav-link:hover {
@@ -65,6 +104,11 @@
         
         .navbar-toggler {
             border: 1px solid var(--gold);
+            padding: 5px 10px;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
         }
         
         .navbar-toggler-icon {
@@ -76,11 +120,16 @@
             background-color: var(--royal-blue);
             border-color: var(--royal-blue);
             font-weight: 600;
+            padding: 10px 25px;
+            border-radius: 8px;
+            transition: all 0.3s;
         }
         
         .btn-primary:hover {
             background-color: #152c63;
             border-color: #152c63;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(26, 60, 136, 0.25);
         }
         
         .btn-gold {
@@ -88,26 +137,32 @@
             color: var(--dark-gray);
             font-weight: 600;
             border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            transition: all 0.3s;
         }
         
         .btn-gold:hover {
             background-color: #e6c300;
             color: var(--dark-gray);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 215, 0, 0.3);
         }
         
         /* Hero Section */
         .hero-banner {
-            background: linear-gradient(rgba(26, 60, 136, 0.8), rgba(26, 60, 136, 0.8)), url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d');
+            background: linear-gradient(rgba(26, 60, 136, 0.85), rgba(26, 60, 136, 0.85)), url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d');
             background-size: cover;
             background-position: center;
-            height: 500px;
+            height: 600px;
             color: white;
             display: flex;
             align-items: center;
-            border-radius: 10px;
-            margin-bottom: 40px;
+            border-radius: 15px;
+            margin-bottom: 60px;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
         .hero-banner::after {
@@ -125,13 +180,29 @@
         .hero-content {
             position: relative;
             z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         /* Section Titles */
         .section-title {
             position: relative;
-            margin-bottom: 40px;
-            padding-bottom: 15px;
+            margin-bottom: 50px;
+            padding-bottom: 20px;
             text-align: center;
         }
         
@@ -141,185 +212,386 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--gold);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--royal-blue), var(--gold));
+            border-radius: 2px;
         }
         
         /* Product Cards */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
         .product-card {
             background: white;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.4s ease;
             border: 1px solid #eee;
-            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
             position: relative;
         }
         
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
             border: 1px solid var(--gold);
         }
         
         .product-image {
-            height: 250px;
+            height: 280px;
             background-size: cover;
             background-position: center;
             position: relative;
+            transition: all 0.5s ease;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.05);
         }
         
         .badge-new {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: var(--gold);
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, var(--gold), var(--light-gold));
             color: var(--dark-gray);
             font-weight: bold;
-            padding: 5px 15px;
+            padding: 6px 18px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
         
         .product-content {
-            padding: 20px;
+            padding: 25px;
+        }
+        
+        .product-content h5 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-content .price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--royal-blue);
+            margin-bottom: 1rem;
         }
         
         /* Cart */
         .cart-item {
             background: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border-left: 4px solid var(--royal-blue);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--royal-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
         /* Footer */
         footer {
-            background-color: var(--royal-blue);
+            background: linear-gradient(to right, #0f2a63, var(--royal-blue));
             color: white;
-            padding: 60px 0 20px;
-            margin-top: 60px;
+            padding: 70px 0 25px;
+            margin-top: 80px;
         }
         
         footer h5 {
             color: var(--gold);
-            font-weight: 600;
-            margin-bottom: 20px;
+            font-weight: 700;
+            margin-bottom: 25px;
             font-family: 'Montserrat', sans-serif;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        footer h5:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--gold);
         }
         
         footer a {
             color: white;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            display: block;
+            margin-bottom: 12px;
         }
         
         footer a:hover {
             color: var(--gold);
+            transform: translateX(5px);
+        }
+        
+        .social-icons {
+            display: flex;
+            margin-top: 20px;
         }
         
         .social-icons a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            margin-right: 10px;
+            margin-right: 12px;
             transition: all 0.3s;
+            font-size: 1.2rem;
         }
         
         .social-icons a:hover {
             background: var(--gold);
             color: var(--dark-gray);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
         }
         
         /* Special Offers */
         .special-offer {
-            background: linear-gradient(to right, var(--royal-blue), #2a52be);
+            background: linear-gradient(105deg, var(--royal-blue), #2a52be);
             color: white;
-            padding: 40px;
-            border-radius: 10px;
-            margin: 40px 0;
+            padding: 50px;
+            border-radius: 15px;
+            margin: 50px 0;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(26, 60, 136, 0.2);
         }
         
         .special-offer::before {
             content: '';
             position: absolute;
-            top: -20px;
-            right: -20px;
-            width: 100px;
-            height: 100px;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
             background: var(--gold);
             border-radius: 50%;
-            opacity: 0.2;
+            opacity: 0.15;
+        }
+        
+        .special-offer::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 150px;
+            height: 150px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0.1;
         }
         
         /* Testimonials */
         .testimonial-card {
             background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            margin: 15px 0;
-            border-top: 3px solid var(--gold);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            margin: 20px 0;
+            border-top: 5px solid var(--gold);
+            transition: all 0.3s;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
         }
         
         .testimonial-text {
             font-style: italic;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--medium-gray);
         }
         
         .testimonial-author {
-            font-weight: 600;
+            font-weight: 700;
             color: var(--royal-blue);
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-author:before {
+            content: "—";
+            margin-right: 5px;
         }
         
         /* Newsletter */
         .newsletter {
-            background: linear-gradient(to right, var(--royal-blue), #2a52be);
-            padding: 40px 0;
+            background: linear-gradient(105deg, var(--royal-blue), #2a52be);
+            padding: 60px 0;
             color: white;
+            margin: 60px 0;
+        }
+        
+        .newsletter .form-control {
+            height: 55px;
+            border-radius: 8px;
+            border: none;
+            padding: 0 20px;
+            font-size: 1.05rem;
+        }
+        
+        .newsletter .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
         }
         
         /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .logo-img {
+                height: 60px;
+                width: 60px;
+            }
+            
+            .navbar-brand {
+                font-size: 1.7rem;
+            }
+        }
+        
         @media (max-width: 768px) {
+            body {
+                padding-top: 80px;
+            }
+            
             .hero-banner {
-                height: 400px;
+                height: 500px;
             }
             
             .hero-content h1 {
-                font-size: 2.2rem;
+                font-size: 2.3rem;
             }
             
-            .product-image {
-                height: 200px;
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .logo-img {
+                height: 50px;
+                width: 50px;
             }
             
             .navbar-brand {
                 font-size: 1.5rem;
             }
             
-            .logo-img {
-                height: 40px;
-                width: 40px;
+            .special-offer {
+                padding: 30px;
             }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo-img {
+                height: 45px;
+                width: 45px;
+                margin-right: 10px;
+            }
+            
+            .navbar-brand {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Additional UI Improvements */
+        .divider {
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            margin: 40px 0;
+            border: none;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--royal-blue);
+            margin-bottom: 20px;
+        }
+        
+        .feature-box {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            height: 100%;
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quantity-btn:hover {
+            background: var(--royal-blue);
+            color: white;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            border: none;
+            font-weight: bold;
+            margin: 0 10px;
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="https://raw.githubusercontent.com/yasin786-my/shop/main/static/logo.png" alt="RESTHETIX SWAG Logo" class="logo-img" id="header-logo">
+                <img src="https://raw.githubusercontent.com/yasin786-my/shop/main/static/logo.png" alt="RESTHETIX SWAG Logo" class="logo-img">
                 RESTHETIX SWAG
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -357,95 +629,126 @@
     <!-- Hero Banner -->
     <section class="hero-banner">
         <div class="container hero-content">
-            <div class="row">
-                <div class="col-md-8">
-                    <h1 class="display-4 fw-bold">Elevate Your Style with Premium Clothing</h1>
-                    <p class="lead">Discover our exclusive collection of luxury garments crafted with precision and care.</p>
-                    <a href="#products" class="btn btn-gold btn-lg me-2">Shop Now</a>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h1>Elevate Your Style with Premium Clothing</h1>
+                    <p>Discover our exclusive collection of luxury garments crafted with precision and care for the discerning customer.</p>
+                    <a href="#products" class="btn btn-gold btn-lg me-3">Shop Collection</a>
                     <a href="#about" class="btn btn-outline-light btn-lg">Learn More</a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h4>Free Shipping</h4>
+                        <p>Free worldwide shipping on all orders over $200</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Secure Payment</h4>
+                        <p>We ensure secure payment with Stripe</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-undo"></i>
+                        </div>
+                        <h4>Easy Returns</h4>
+                        <p>30-day money back guarantee on all items</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider">
+
     <!-- Featured Products -->
     <section id="products" class="py-5">
         <div class="container">
-            <h2 class="section-title">Featured Products</h2>
-            <div class="row">
+            <h2 class="section-title">Featured Collection</h2>
+            <div class="product-grid">
                 <!-- Product 1 -->
-                <div class="col-md-4">
-                    <div class="product-card">
-                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1598033129183-c4f50c736f10');">
-                            <span class="badge-new">NEW</span>
-                        </div>
-                        <div class="product-content">
-                            <h5>Premium Suit</h5>
-                            <p class="text-muted">Elegant business suit</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="fw-bold">$299.99</span>
-                                <button class="btn btn-sm btn-primary add-to-cart" data-product="Premium Suit" data-price="299.99">
-                                    <i class="fas fa-shopping-cart me-1"></i> Add to Cart
-                                </button>
-                            </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1598033129183-c4f50c736f10');">
+                        <span class="badge-new">NEW</span>
+                    </div>
+                    <div class="product-content">
+                        <h5>Premium Business Suit</h5>
+                        <p class="text-muted">Elegant tailored suit for professional settings</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="price">$299.99</span>
+                            <button class="btn btn-sm btn-primary add-to-cart" data-product="Premium Business Suit" data-price="299.99">
+                                <i class="fas fa-shopping-cart me-1"></i> Add to Cart
+                            </button>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Product 2 -->
-                <div class="col-md-4">
-                    <div class="product-card">
-                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1591047139829-d91aecb6caea');">
-                            <span class="badge-new">TRENDING</span>
-                        </div>
-                        <div class="product-content">
-                            <h5>Classic Dress Shirt</h5>
-                            <p class="text-muted">100% Egyptian cotton</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="fw-bold">$89.99</span>
-                                <button class="btn btn-sm btn-primary add-to-cart" data-product="Classic Dress Shirt" data-price="89.99">
-                                    <i class="fas fa-shopping-cart me-1"></i> Add to Cart
-                                </button>
-                            </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1591047139829-d91aecb6caea');">
+                        <span class="badge-new">TRENDING</span>
+                    </div>
+                    <div class="product-content">
+                        <h5>Classic Dress Shirt</h5>
+                        <p class="text-muted">100% Egyptian cotton with premium finish</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="price">$89.99</span>
+                            <button class="btn btn-sm btn-primary add-to-cart" data-product="Classic Dress Shirt" data-price="89.99">
+                                <i class="fas fa-shopping-cart me-1"></i> Add to Cart
+                            </button>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Product 3 -->
-                <div class="col-md-4">
-                    <div class="product-card">
-                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1584917865442-de89df76afd3');">
-                            <span class="badge-new">POPULAR</span>
-                        </div>
-                        <div class="product-content">
-                            <h5>Cashmere Sweater</h5>
-                            <p class="text-muted">Luxurious and warm</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="fw-bold">$149.99</span>
-                                <button class="btn btn-sm btn-primary add-to-cart" data-product="Cashmere Sweater" data-price="149.99">
-                                    <i class="fas fa-shopping-cart me-1"></i> Add to Cart
-                                </button>
-                            </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1584917865442-de89df76afd3');">
+                        <span class="badge-new">POPULAR</span>
+                    </div>
+                    <div class="product-content">
+                        <h5>Cashmere Sweater</h5>
+                        <p class="text-muted">Luxurious and warm for the winter season</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="price">$149.99</span>
+                            <button class="btn btn-sm btn-primary add-to-cart" data-product="Cashmere Sweater" data-price="149.99">
+                                <i class="fas fa-shopping-cart me-1"></i> Add to Cart
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="text-center mt-4">
-                <a href="#" class="btn btn-primary">View All Products</a>
+                <a href="#" class="btn btn-primary btn-lg">View All Products</a>
             </div>
         </div>
     </section>
 
     <!-- Special Offer -->
     <section class="special-offer">
-        <div class="container">
+        <div class="container position-relative z-index-1">
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <h2>Summer Collection Launch</h2>
-                    <p>Get 20% off on all summer items. Limited time offer. Use code: SUMMER20</p>
+                    <p class="mb-0">Get 20% off on all summer items. Limited time offer. Use code: SUMMER20</p>
                 </div>
-                <div class="col-md-4 text-center">
+                <div class="col-md-4 text-center text-md-end">
                     <div class="bg-gold rounded p-2 text-dark fw-bold fs-4 d-inline-block">
                         <span class="px-3">SUMMER20</span>
                     </div>
@@ -462,25 +765,25 @@
                 <div class="col-md-4">
                     <div class="testimonial-card">
                         <div class="testimonial-text">
-                            "The quality of the fabric is exceptional. I've never worn a more comfortable suit!"
+                            "The quality of the fabric is exceptional. I've never worn a more comfortable suit! The attention to detail is remarkable."
                         </div>
-                        <div class="testimonial-author">- Michael Johnson</div>
+                        <div class="testimonial-author">Michael Johnson</div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="testimonial-card">
                         <div class="testimonial-text">
-                            "Fast shipping and perfect fit. Will definitely shop here again!"
+                            "Fast shipping and perfect fit. The customer service was outstanding. Will definitely shop here again!"
                         </div>
-                        <div class="testimonial-author">- Sarah Williams</div>
+                        <div class="testimonial-author">Sarah Williams</div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="testimonial-card">
                         <div class="testimonial-text">
-                            "The attention to detail in their clothing is remarkable. True luxury."
+                            "The attention to detail in their clothing is remarkable. True luxury that's worth every penny."
                         </div>
-                        <div class="testimonial-author">- James Peterson</div>
+                        <div class="testimonial-author">James Peterson</div>
                     </div>
                 </div>
             </div>
@@ -490,12 +793,12 @@
     <!-- Newsletter -->
     <section class="newsletter">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h3>Subscribe to Our Newsletter</h3>
-                    <p>Get updates on new collections and exclusive offers.</p>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h3 class="mb-3">Subscribe to Our Newsletter</h3>
+                    <p class="mb-0">Get updates on new collections and exclusive offers.</p>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <div class="d-flex">
                         <input type="email" class="form-control me-2" placeholder="Your email address">
                         <button class="btn btn-gold">Subscribe</button>
@@ -534,9 +837,9 @@
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-md-4 mb-4">
+                <div class="col-lg-4 col-md-6 mb-4">
                     <h5>RESTHETIX SWAG</h5>
-                    <p>Premium clothing for the discerning customer who values quality and style.</p>
+                    <p>Premium clothing for the discerning customer who values quality, style, and sophistication.</p>
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
@@ -544,7 +847,7 @@
                         <a href="#"><i class="fab fa-pinterest-p"></i></a>
                     </div>
                 </div>
-                <div class="col-md-2 mb-4">
+                <div class="col-lg-2 col-md-6 mb-4">
                     <h5>Shop</h5>
                     <ul class="list-unstyled">
                         <li><a href="#">Men's Collection</a></li>
@@ -553,7 +856,7 @@
                         <li><a href="#">New Arrivals</a></li>
                     </ul>
                 </div>
-                <div class="col-md-2 mb-4">
+                <div class="col-lg-2 col-md-6 mb-4">
                     <h5>Company</h5>
                     <ul class="list-unstyled">
                         <li><a href="#">About Us</a></li>
@@ -562,7 +865,7 @@
                         <li><a href="#">Terms of Service</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-lg-4 col-md-6 mb-4">
                     <h5>Contact Us</h5>
                     <ul class="list-unstyled">
                         <li><i class="fas fa-map-marker-alt me-2"></i> 123 Luxury Avenue, Fashion District</li>
@@ -572,7 +875,7 @@
                 </div>
             </div>
             <hr>
-            <p class="text-center mb-0">&copy; 2025 RESTHETIX SWAG. All rights reserved.</p>
+            <p class="text-center mb-0">&copy; 2023 RESTHETIX SWAG. All rights reserved.</p>
         </div>
     </footer>
 
@@ -633,17 +936,15 @@
                     
                     itemsHTML += `
                         <div class="cart-item">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <h6>${item.product}</h6>
-                                    <p class="mb-0">$${item.price.toFixed(2)} x ${item.quantity}</p>
-                                </div>
-                                <div>
-                                    <span class="fw-bold">$${itemTotal.toFixed(2)}</span>
-                                    <button class="btn btn-sm btn-outline-danger ms-2 remove-from-cart" data-product="${item.product}">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
+                            <div>
+                                <h6>${item.product}</h6>
+                                <p class="mb-0">$${item.price.toFixed(2)} x ${item.quantity}</p>
+                            </div>
+                            <div>
+                                <span class="fw-bold">$${itemTotal.toFixed(2)}</span>
+                                <button class="btn btn-sm btn-outline-danger ms-2 remove-from-cart" data-product="${item.product}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </div>
                         </div>
                     `;
